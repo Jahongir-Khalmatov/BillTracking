@@ -12,13 +12,10 @@ import org.springframework.ui.Model;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 import dmacc.beans.Bill;
 import dmacc.repository.BillRepository;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Optional;
 
@@ -93,10 +90,51 @@ bill1.setDescription(bill.getDescription());
 bill1.setIsPayed(bill.getIsPayed());
 bill1.setTax(bill.getTax() );
 bill1.setTotal(bill.getTotal());
+repo.save(bill1);
+model.addAttribute("success", repo.findById(id));
 return "success";
             }
             return "Bill id not founded";
         }
         return "You do not have permission";
     }
+    @PostMapping("/addBill")
+    public String addBills(Model model , @RequestBody Bill bill,@PathVariable Long flagManager){
+        if (flagManager == 1) {
+                Bill bill1 = new Bill();
+                bill1.setDescription(bill.getDescription());
+                Optional<Employee> optionalEmployee = employeeRepository.findById(bill.getEmployee().getId());
+                if (!optionalEmployee.isPresent()) {
+                    return "Employee Id not found";
+                }
+                Employee employee = optionalEmployee.get();
+                bill1.setEmployee(employee);
+                bill1.setActivity(bill.getActivity());
+                bill1.setDescription(bill.getDescription());
+                bill1.setIsPayed(bill.getIsPayed());
+                bill1.setTax(bill.getTax() );
+                bill1.setTotal(bill.getTotal());
+                repo.save(bill1);
+                return "success";
+            }
+            return "Bill id not founded";
+
+
+    }
+    @DeleteMapping("/delete/{id}")
+    public String deleteBillById(@PathVariable Long id,@PathVariable Long managerFlag,Model model){
+        if (managerFlag!=1){
+            return "you do not have permission";
+        }
+        Optional<Bill> optionalBill = repo.findById(id);
+if (optionalBill.isEmpty()){
+    return "bill not founded";
+}
+        Bill bill = optionalBill.get();
+    repo.delete(bill);
+    return "deleted";
+
+    }
+
+
 }
