@@ -115,12 +115,13 @@ return "success";
                 bill1.setTax(bill.getTax() );
                 bill1.setTotal(bill.getTotal());
                 repo.save(bill1);
-                return "success";
+            return "success";
             }
             return "Bill id not founded";
 
 
     }
+    //
     @DeleteMapping("/delete/{id}")
     public String deleteBillById(@PathVariable Long id,@PathVariable Long managerFlag,Model model){
         if (managerFlag!=1){
@@ -135,6 +136,14 @@ if (optionalBill.isEmpty()){
     return "deleted";
 
     }
-
+@GetMapping("/getBillById/{id}")
+    public Bill getBillById(@PathVariable Long id,Model model,Long managerFlag){
+    Optional<Bill> optionalBill = repo.findById(id);
+    if (managerFlag!=0){
+    return null;
+    }
+    Bill bill = optionalBill.get();
+    return bill;
+}
 
 }
