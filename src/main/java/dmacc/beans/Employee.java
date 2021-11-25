@@ -18,10 +18,10 @@ import javax.persistence.OneToMany;
 public class Employee extends Person{
 	@Id
 	@GeneratedValue
-	private long id;
+	private Long id;
 	private int managerFlag;
 	
-	@OneToMany(mappedBy = "bill", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Bill> bills;
 	
 	public Employee() {

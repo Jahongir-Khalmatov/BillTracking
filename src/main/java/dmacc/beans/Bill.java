@@ -5,13 +5,19 @@
  */
 package dmacc.beans;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
+@Data
+@AllArgsConstructor
 @Entity
+@NoArgsConstructor
 public class Bill {
 	
 	@Id
@@ -19,104 +25,93 @@ public class Bill {
 	private long id;
 	private int total;
 	private float tax;
-	private String desc;
+	private String description;
 	private String activity;
+	private Boolean isPayed;
 	//private Customer customer; customer will inherit from person
 	//date variable *** look at input page for further guidance on variable name ***
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Employee employee;
-	private long empId;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Customer customer;
-	
+	private Long empId;
 	
 	//TODO: constructors
-	public Bill(long id, int total, float tax, String desc, String activity) {
-		this.id = id;
-		this.total = total;
-		this.tax = tax;
-		this.desc = desc;
-		this.activity = activity;
-	}
-	
-	public Bill(int total, float tax, String desc, String activity) {
-		this.total = total;
-		this.tax = tax;
-		this.desc = desc;
-		this.activity = activity;
-	}
-	
-	public Bill(int total, float tax) {
-		this.total = total;
-		this.tax = tax;
-	}
-	
-	public Bill(int total) {
-		this.total = total;
-	}
-	
-	public Bill() {
-		
-	}
-	
-	public Employee getEmployee() {
-		return employee;
-	}
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-		this.setEmpId(employee.getId());
-	}
-	
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	
-	public String getActivity() {
-		return activity;
-	}
-	public void setActivity(String activity) {
-		this.activity = activity;
-	}
-	
-	public int getTotal() {
-		return total;
-	}
-	public void setTotal(int total) {
-		this.total = total;
-	}
-	
-	public float getTax() {
-		return tax;
-	}
-	public void setTax(float tax) {
-		this.tax = tax;
-	}
-	
-	public String getDesc() {
-		return desc;
-	}
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
-
-	public long getEmpId() {
-		return empId;
-	}
-	public void setEmpId(long empId) {
-		this.empId = empId;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-	
+//	public Bill(long id, int total, float tax, String desc, String activity) {
+//		this.id = id;
+//		this.total = total;
+//		this.tax = tax;
+//		this.desc = desc;
+//		this.activity = activity;
+//	}
+//
+//	public Bill(int total, float tax, String desc, String activity) {
+//		this.total = total;
+//		this.tax = tax;
+//		this.desc = desc;
+//		this.activity = activity;
+//	}
+//
+//	public Bill(int total, float tax) {
+//		this.total = total;
+//		this.tax = tax;
+//	}
+//
+//	public Bill(int total) {
+//		this.total = total;
+//	}
+//
+//	public Bill() {
+//
+//	}
+//
+//	public Employee getEmployee() {
+//		return employee;
+//	}
+//	public void setEmployee(Employee employee) {
+//		this.employee = employee;
+//		this.setEmpId(employee.getId());
+//	}
+//
+//	public long getId() {
+//		return id;
+//	}
+//	public void setId(long id) {
+//		this.id = id;
+//	}
+//
+//	public String getActivity() {
+//		return activity;
+//	}
+//	public void setActivity(String activity) {
+//		this.activity = activity;
+//	}
+//
+//	public int getTotal() {
+//		return total;
+//	}
+//	public void setTotal(int total) {
+//		this.total = total;
+//	}
+//
+//	public float getTax() {
+//		return tax;
+//	}
+//	public void setTax(float tax) {
+//		this.tax = tax;
+//	}
+//
+//	public String getDesc() {
+//		return desc;
+//	}
+//	public void setDesc(String desc) {
+//		this.desc = desc;
+//	}
+//
+//	public long getEmpId() {
+//		return empId;
+//	}
+//	public void setEmpId(long empId) {
+//		this.empId = empId;
+//	}
+//
 }

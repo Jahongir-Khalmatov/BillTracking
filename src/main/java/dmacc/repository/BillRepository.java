@@ -18,6 +18,7 @@ public interface BillRepository extends JpaRepository<Bill, Long> {
 	 * @param id
 	 * @return
 	 */
-	List<Bill> findByEmpId(long id);
 
+	List<Bill> findAllByEmployee_Id(long id);
+	List<Bill> findAllByEmployee_IdAndIsPayedTrue(long employee_id);
 }
