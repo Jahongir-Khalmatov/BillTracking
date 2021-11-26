@@ -125,7 +125,7 @@ return "success";
     @DeleteMapping("/delete/{id}")
     public String deleteBillById(@PathVariable Long id,@PathVariable Long managerFlag,Model model){
         if (managerFlag!=1){
-            return "you do not have permission";
+            return "you do not have permission to delete";
         }
         Optional<Bill> optionalBill = repo.findById(id);
 if (optionalBill.isEmpty()){
