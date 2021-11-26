@@ -112,7 +112,7 @@ return "success";
                 bill1.setActivity(bill.getActivity());
                 bill1.setDescription(bill.getDescription());
                 bill1.setIsPayed(bill.getIsPayed());
-                bill1.setTax(bill.getTax() );
+                bill1.setTax(bill.getTax());
                 bill1.setTotal(bill.getTotal());
                 repo.save(bill1);
             return "success";
